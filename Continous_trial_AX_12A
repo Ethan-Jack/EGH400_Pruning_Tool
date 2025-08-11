@@ -47,10 +47,10 @@ portHandler = PortHandler(DEVICENAME)
 packetHandler = PacketHandler(PROTOCOL_VERSION)
 
 if not portHandler.openPort():
-    print("❌ Failed to open port")
+    print("Failed to open port")
     quit()
 if not portHandler.setBaudRate(BAUDRATE):
-    print("❌ Failed to set baudrate")
+    print("Failed to set baudrate")
     quit()
 print("Waiting for 's' to start... (Press 'q' to quit)")
 while True:
