@@ -57,6 +57,8 @@ ADDR_MX_MOVING_SPEED = 32
 ADDR_MX_CW_ANGLE_LIMIT = 6
 ADDR_MX_CCW_ANGLE_LIMIT = 8
 
+ADDR_MX_PRESENT_LOAD = 40
+
 # Protocol version
 PROTOCOL_VERSION            = 1.0               # See which protocol version is used in the Dynamixel
 
@@ -145,7 +147,21 @@ while 1:
         elif dxl_error != 0:
             print("%s" % packetHandler.getRxPacketError(dxl_error))
 
-        print("[ID:%03d] GoalPos:%03d  PresPos:%03d" % (DXL_ID, dxl_goal_position[index], dxl_present_position))
+
+
+    # Read present load
+        dxl_present_load, dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, DXL_ID, ADDR_MX_PRESENT_LOAD)
+        if dxl_comm_result != COMM_SUCCESS:
+            print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+        elif dxl_error != 0:
+            print("%s" % packetHandler.getRxPacketError(dxl_error))
+        load_direction = "CCW"
+        if dxl_present_load > 1023:  # If direction bit is set
+            load_direction = "CW"
+            dxl_present_load = dxl_present_load & 0x3FF  # Mask out direction bit
+        load_percentage = (dxl_present_load / 1023.0) * 100
+
+        print("[ID:%03d] GoalPos:%03d  PresPos:%03d CurrentLoad:%.1f%%" % (DXL_ID, dxl_goal_position[index], dxl_present_position, load_percentage))
 
         if not abs(dxl_goal_position[index] - dxl_present_position) > DXL_MOVING_STATUS_THRESHOLD:
             break

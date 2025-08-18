@@ -11,12 +11,12 @@ ADDR_MX_PRESENT_POSITION   = 36
 ADDR_MX_MOVING_SPEED       = 32
 ADDR_MX_CW_ANGLE_LIMIT     = 6
 ADDR_MX_CCW_ANGLE_LIMIT    = 8
-
+ADDR_MX_PRESENT_LOAD       = 40
 PROTOCOL_VERSION           = 1.0
 
 DXL_ID                     = 101
 BAUDRATE                   = 1000000
-DEVICENAME                 = 'com6'
+DEVICENAME                 = 'com3'
 
 TORQUE_ENABLE              = 1
 TORQUE_DISABLE             = 0
