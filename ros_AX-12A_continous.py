@@ -13,7 +13,7 @@ ADDR_MX_TORQUE_LIMIT       = 34
 
 PROTOCOL_VERSION           = 1.0
 DXL_ID                     = 101
-BAUDRATE                   = 1000000
+BAUDRATE                   = 57600
 DEVICENAME                 = 'com6'
 
 TORQUE_ENABLE              = 1
@@ -40,6 +40,9 @@ else:
 
 # ---------------- Init ----------------
 portHandler = PortHandler(DEVICENAME)
+
+
+
 packetHandler = PacketHandler(PROTOCOL_VERSION)
 
 if not portHandler.openPort():
