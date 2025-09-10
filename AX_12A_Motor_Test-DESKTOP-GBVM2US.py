@@ -41,7 +41,7 @@ else:
     def getch():
         try:
             tty.setraw(sys.stdin.fileno())
-            ch = sys.stdin.read(1)
+            return sys.stdin.read(1)
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         return ch
@@ -65,7 +65,7 @@ PROTOCOL_VERSION            = 1.0               # See which protocol version is 
 # Default setting
 DXL_ID                      = 101                 # Dynamixel ID : 1
 BAUDRATE                    = 1000000             # Dynamixel default baudrate : 57600
-DEVICENAME                  = 'com3'    # Check which port is being used on your controller
+DEVICENAME                  = 'com6'    # Check which port is being used on your controller
                                                 # ex) Windows: "COM1"   Linux: "/dev/ttyUSB0" Mac: "/dev/tty.usbserial-*"
 
 TORQUE_ENABLE               = 1                 # Value for enabling the torque
