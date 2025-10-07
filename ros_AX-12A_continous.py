@@ -97,6 +97,7 @@ while True:
         packetHandler.write2ByteTxRx(portHandler, DXL_ID, ADDR_MX_MOVING_SPEED, DXL_MOVING_SPEED)
         packetHandler.write2ByteTxRx(portHandler, DXL_ID, ADDR_MX_GOAL_POSITION, DEFAULT_POSITION)
 
+
         # Print live position until target is reached
         while True:
             dxl_present_position, dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(
